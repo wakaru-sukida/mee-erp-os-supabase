@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;background:oklch(0.98 0.004 255);}
+a{color:oklch(0.5 0.16 255);text-decoration:none;}
+a:hover{color:oklch(0.42 0.17 255);text-decoration:underline;}
+input:focus{outline:2px solid oklch(0.55 0.16 255 / .35);outline-offset:1px;}
+</style>
+</helmet>
+<div style="min-height:100%;background:oklch(0.98 0.004 255);color:oklch(0.25 0.02 265);font-family:'IBM Plex Sans Thai','Inter',sans-serif;padding:28px 24px 56px;">
+ <div style="max-width:940px;margin:0 auto;display:flex;flex-direction:column;gap:18px;">
+
+  <div style="display:flex;flex-direction:column;gap:6px;">
+   <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;color:oklch(0.55 0.02 265);">MEE-ERP OS › OS CORE › DATA LAYER</div>
+   <h1 style="margin:0;font-size:25px;font-weight:700;letter-spacing:-0.2px;">ตั้งค่าฐานข้อมูล — Supabase (PostgreSQL)</h1>
+   <div style="font-size:13.5px;line-height:1.7;color:oklch(0.5 0.02 265);max-width:70ch;text-wrap:pretty;">เปลี่ยนแหล่งข้อมูลของทุกโมดูลจาก Google Sheet เป็น SQL จริง โดยไม่ต้องแก้ไฟล์โมดูล — ชั้น <code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;">erp-kit.js › sheetsBind()</code> จะสลับไปเรียก Supabase ให้เองเมื่อบันทึกการเชื่อมต่อสำเร็จ</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid oklch(0.9 0.006 255);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:16px;">
+   <div style="display:flex;align-items:center;gap:10px;">
+    <span style="width:24px;height:24px;border-radius:7px;background:oklch(0.55 0.16 255);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span>
+    <div style="font-size:15px;font-weight:700;">สร้างตารางใน Supabase</div>
+   </div>
+   <div style="font-size:13px;line-height:1.75;color:oklch(0.5 0.02 265);">กด <b>สร้างสคริปต์จากชีตจริง</b> — ระบบจะอ่านหัวตารางของทุกแท็บใน Google Sheet ปัจจุบัน ({{ tableCount }} แท็บ) แล้วประกอบ SQL ให้ชื่อคอลัมน์ตรงกับข้อมูลจริง จากนั้นวางใน Supabase › <b>SQL Editor</b> › New query แล้ว Run ครั้งเดียว</div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;">
+    <button onClick="{{ genSql }}" style="padding:9px 18px;border-radius:9px;border:none;background:oklch(0.55 0.16 255);color:#fff;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">{{ genLabel }}</button>
+    <button onClick="{{ download }}" style="padding:9px 16px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);background:#fff;color:oklch(0.4 0.02 265);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">ดาวน์โหลดชุดสำรอง</button>
+    <button onClick="{{ copySql }}" style="padding:9px 16px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);background:#fff;color:oklch(0.4 0.02 265);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">{{ copyLabel }}</button>
+   </div>
+   <label style="display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border-radius:10px;border:1px solid oklch(0.9 0.006 255);background:oklch(0.985 0.003 255);cursor:pointer;">
+    <input type="checkbox" checked="{{ reset }}" onChange="{{ toggleReset }}" style="margin-top:2px;width:15px;height:15px;accent-color:oklch(0.55 0.16 255);flex:none;">
+    <span style="font-size:12.5px;line-height:1.65;color:oklch(0.4 0.02 265);"><b>ลบตารางเดิมทิ้งก่อนสร้างใหม่</b> — เลือกข้อนี้ถ้าเคยรันสคริปต์เวอร์ชันก่อนแล้วเจอ error เรื่องคอลัมน์ ข้อมูลใน Supabase จะถูกล้าง (ต้นทางยังอยู่ในชีต ย้ายซ้ำได้ที่ขั้นที่ 3) · ไม่เลือก = สคริปต์จะอัปเกรดตารางเดิมแทน</span>
+   </label>
+   <div style="font-size:12px;line-height:1.7;color:oklch(0.55 0.02 265);">คอลัมน์ระบบขึ้นต้นด้วย <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;">_</code> (<code style="font-family:'IBM Plex Mono',monospace;font-size:12px;">_pk · _tenant · _seq · _extra</code>) จึงไม่ทับฟิลด์ข้อมูลจริงอย่าง <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;">id</code> หรือ <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;">tenant_id</code> ที่มีอยู่ในชีต · ชุดสำรอง (<code style="font-family:'IBM Plex Mono',monospace;font-size:12px;">supabase-schema.sql</code>) อิงข้อมูลตัวอย่างในโค้ด ใช้เฉพาะตอนเข้าถึงชีตไม่ได้</div>
+   <sc-if value="{{ hasSqlText }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+     <textarea readonly="readonly" value="{{ sqlText }}" onFocus="{{ selectAll }}" onClick="{{ selectAll }}" style="width:100%;height:220px;padding:12px;border-radius:10px;border:1px solid oklch(0.9 0.006 255);background:oklch(0.985 0.003 255);color:oklch(0.3 0.02 265);font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;resize:vertical;"></textarea>
+     <div style="display:flex;gap:10px;align-items:center;">
+      <button onClick="{{ closeSql }}" style="padding:7px 14px;border-radius:8px;border:1px solid oklch(0.9 0.006 255);background:#fff;color:oklch(0.4 0.02 265);font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;">ปิดกล่อง</button>
+      <span style="font-size:12px;color:oklch(0.55 0.02 265);">คลิกในกล่องจะเลือกทั้งหมดให้ แล้วกด Ctrl+C (Mac: ⌘C)</span>
+     </div>
+    </div>
+   </sc-if>
+  </div>
+
+  <div style="background:#fff;border:1px solid oklch(0.9 0.006 255);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:16px;">
+   <div style="display:flex;align-items:center;gap:10px;">
+    <span style="width:auto;min-width:24px;height:24px;padding:0 7px;border-radius:7px;background:oklch(0.62 0.15 150);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">1B</span>
+    <div style="font-size:15px;font-weight:700;">เปิดโหมดสร้างตารางอัตโนมัติ (ทุกโมดูล)</div>
+   </div>
+   <div style="font-size:13px;line-height:1.75;color:oklch(0.5 0.02 265);">ขั้นที่ 1 สร้างตารางเฉพาะโมดูลที่เคยมีชีตอยู่แล้ว ส่วนโมดูลที่เหลือ (SALE · ACCT · HRMS · PROD · SRVC · ADMS ส่วนใหญ่) ยังไม่มีตารางรองรับ — รันสคริปต์นี้ <b>ครั้งเดียว</b> เพื่อติดตั้งฟังก์ชัน <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;">mee_ensure_table()</code> แล้วระบบจะสร้างตาราง/เพิ่มคอลัมน์ให้เองเมื่อโมดูลใดบันทึกข้อมูลครั้งแรก พร้อมเปิด RLS และให้สิทธิ์ครบ</div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;">
+    <button onClick="{{ showAuto }}" style="padding:9px 18px;border-radius:9px;border:none;background:oklch(0.62 0.15 150);color:#fff;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">{{ autoLabel }}</button>
+    <button onClick="{{ checkAuto }}" style="padding:9px 16px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);background:#fff;color:oklch(0.4 0.02 265);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">ตรวจว่าติดตั้งแล้วหรือยัง</button>
+   </div>
+   <sc-if value="{{ autoMsg }}" hint-placeholder-val="{{ false }}">
+    <div style="font-size:12.5px;line-height:1.7;color:oklch(0.4 0.02 265);background:oklch(0.98 0.01 150);border:1px solid oklch(0.9 0.02 150);border-radius:10px;padding:10px 12px;">{{ autoMsg }}</div>
+   </sc-if>
+   <sc-if value="{{ hasAutoText }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+     <textarea readonly="readonly" value="{{ autoText }}" onFocus="{{ selectAll }}" onClick="{{ selectAll }}" style="width:100%;height:220px;padding:12px;border-radius:10px;border:1px solid oklch(0.9 0.006 255);background:oklch(0.985 0.003 255);color:oklch(0.3 0.02 265);font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;resize:vertical;"></textarea>
+     <span style="font-size:12px;color:oklch(0.55 0.02 265);">คลิกในกล่องจะเลือกทั้งหมดให้ แล้วกด Ctrl+C (Mac: ⌘C) → วางใน Supabase › SQL Editor › Run</span>
+    </div>
+   </sc-if>
+  </div>
+
+  <div style="background:#fff;border:1px solid oklch(0.9 0.006 255);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:16px;">
+   <div style="display:flex;align-items:center;gap:10px;">
+    <span style="width:24px;height:24px;border-radius:7px;background:oklch(0.55 0.16 255);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span>
+    <div style="font-size:15px;font-weight:700;">เชื่อมต่อโปรเจกต์</div>
+    <div style="margin-left:auto;">{{ statusPill }}</div>
+   </div>
+   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+    <label style="display:flex;flex-direction:column;gap:6px;">
+     <span style="font-size:12px;font-weight:600;color:oklch(0.45 0.02 265);">Project URL</span>
+     <input value="{{ url }}" onChange="{{ onUrl }}" placeholder="https://xxxxxxxx.supabase.co" spellcheck="false" style="padding:10px 12px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);font-size:13px;font-family:'IBM Plex Mono',monospace;background:#fff;color:oklch(0.25 0.02 265);width:100%;">
+    </label>
+    <label style="display:flex;flex-direction:column;gap:6px;">
+     <span style="font-size:12px;font-weight:600;color:oklch(0.45 0.02 265);">anon public key</span>
+     <input value="{{ key }}" onChange="{{ onKey }}" placeholder="eyJhbGciOi…" spellcheck="false" style="padding:10px 12px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);font-size:13px;font-family:'IBM Plex Mono',monospace;background:#fff;color:oklch(0.25 0.02 265);width:100%;">
+    </label>
+   </div>
+   <div style="font-size:12px;line-height:1.7;color:oklch(0.55 0.02 265);">ใช้ <b>anon key</b> เท่านั้น — อย่าวาง service_role key ในเบราว์เซอร์ การแยกข้อมูลรายผู้เช่าบังคับด้วย RLS ฝั่งฐานข้อมูล · ผู้เช่า: <b>{{ tenantLine }}</b> ระบบเลือกให้อัตโนมัติจากตาราง <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;">tenant</code></div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+    <button onClick="{{ save }}" style="padding:9px 18px;border-radius:9px;border:none;background:oklch(0.55 0.16 255);color:#fff;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">บันทึกและทดสอบ</button>
+    <button onClick="{{ revert }}" style="padding:9px 16px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);background:#fff;color:oklch(0.25 0.02 265);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">กลับไปใช้ Google Sheet</button>
+    <span style="font-size:12.5px;color:oklch(0.5 0.02 265);">{{ testMsg }}</span>
+   </div>
+  </div>
+
+  <div style="background:#fff;border:1px solid oklch(0.9 0.006 255);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:16px;">
+   <div style="display:flex;align-items:center;gap:10px;">
+    <span style="width:24px;height:24px;border-radius:7px;background:oklch(0.55 0.16 255);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span>
+    <div style="font-size:15px;font-weight:700;">ย้ายข้อมูลเดิมจาก Google Sheet</div>
+   </div>
+   <div style="font-size:13px;line-height:1.75;color:oklch(0.5 0.02 265);">อ่านทุกแท็บจาก Apps Script เดิมแล้วเขียนลงตาราง SQL ที่ชื่อตรงกัน ({{ tableCount }} ตาราง จาก {{ moduleCount }} โมดูล) — แท็บว่างจะถูกข้าม ทำซ้ำได้ ข้อมูลเดิมของผู้เช่านี้ในตารางนั้นจะถูกแทนที่ทั้งชุด</div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+    <button onClick="{{ migrate }}" style="padding:9px 18px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);background:#fff;color:oklch(0.25 0.02 265);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">{{ migrateLabel }}</button>
+    <button onClick="{{ audit }}" style="padding:9px 16px;border-radius:9px;border:1px solid oklch(0.9 0.006 255);background:#fff;color:oklch(0.4 0.02 265);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">{{ auditLabel }}</button>
+    <span style="font-size:12.5px;color:oklch(0.5 0.02 265);">{{ progress }}</span>
+   </div>
+   <sc-if value="{{ hasLog }}" hint-placeholder-val="{{ false }}">
+    <div style="border:1px solid oklch(0.93 0.005 255);border-radius:10px;max-height:260px;overflow:auto;background:oklch(0.985 0.003 255);">
+     <sc-for list="{{ log }}" as="line" hint-placeholder-count="0">
+      <div style="display:flex;gap:10px;padding:6px 12px;border-bottom:1px solid oklch(0.95 0.004 255);font-size:12px;font-family:'IBM Plex Mono',monospace;">
+       <span style="color:{{ line.color }};font-weight:600;width:14px;flex:none;">{{ line.mark }}</span>
+       <span style="flex:1;min-width:0;color:oklch(0.35 0.02 265);word-break:break-all;">{{ line.text }}</span>
+      </div>
+     </sc-for>
+    </div>
+   </sc-if>
+  </div>
+
+  <div style="font-size:12px;line-height:1.8;color:oklch(0.55 0.02 265);">
+   หลังบันทึกการเชื่อมต่อ ให้เปิด <a href="Mee-ERP OS.dc.html">Mee-ERP OS</a> แล้วรีเฟรช — ป้ายสถานะบนหน้าจอโมดูลจะเปลี่ยนเป็น “เชื่อมต่อ Supabase แล้ว”
+  </div>
+
+ </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;}}">
+class Component extends DCLogic {
+  state = { url: '', key: '', tenant: 'default', status: 'idle', testMsg: '', log: [], busy: false, done: 0, total: 0, copied: false, tables: [], reset: true };
+
+  componentDidMount() {
+    import('./mee-db.js?v=2').then(m => {
+      this.db = m;
+      const c = m.getCfg();
+      if (c) this.setState({ url: c.url, key: c.anonKey, tenant: c.tenant || 'default', status: 'saved' });
+    }).catch(e => this.setState({ testMsg: 'โหลด mee-db.js ไม่ได้: ' + e.message }));
+    fetch('./db-tables.json').then(r => r.json()).then(tables => this.setState({ tables })).catch(() => {});
+  }
+
+  add(mark, color, text) { this.setState(s => ({ log: [{ mark, color, text }].concat(s.log).slice(0, 400) })); }
+
+  async doSave() {
+    if (!this.db) return;
+    const { url, key, tenant } = this.state;
+    if (!url.trim() || !key.trim()) { this.setState({ status: 'error', testMsg: 'กรอก Project URL และ anon key ก่อน' }); return; }
+    this.db.setCfg({ url, anonKey: key, tenant: tenant.trim() || 'default' });
+    this.setState({ status: 'testing', testMsg: 'กำลังทดสอบ…' });
+    const r = await window.__meeDbAdapter.ping();
+    const t = (window.__meeDbCfg && window.__meeDbCfg.tenant) || 'default';
+    if (r.ok && t !== this.state.tenant) { this.setState({ tenant: t }); this.db.setCfg({ url, anonKey: key, tenant: t }); }
+    this.setState(r.ok
+      ? { status: 'ok', testMsg: 'เชื่อมต่อสำเร็จ — ทุกโมดูลจะอ่าน/เขียนที่ Supabase ตั้งแต่โหลดหน้าถัดไป' }
+      : { status: 'error', testMsg: 'เชื่อมต่อไม่สำเร็จ: ' + r.error });
+  }
+
+  doRevert() {
+    if (this.db) this.db.setCfg(null);
+    this.setState({ status: 'idle', testMsg: 'กลับไปใช้ Google Sheet (Apps Script) แล้ว' });
+  }
+
+  async doCopy() {
+    let sql = '';
+    try { sql = await (await fetch('./supabase-schema.sql')).text(); }
+    catch (e) { this.setState({ testMsg: 'อ่านไฟล์ SQL ไม่ได้: ' + e.message }); return; }
+    // 1) Clipboard API — ใช้ไม่ได้ในบาง iframe/เบราว์เซอร์  2) execCommand  3) เปิดกล่องให้กด Ctrl+C เอง
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(sql);
+        this.setState({ copied: true, testMsg: '' });
+        setTimeout(() => this.setState({ copied: false }), 2200);
+        return;
+      }
+    } catch (e) {}
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = sql; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (ok) { this.setState({ copied: true, testMsg: '' }); setTimeout(() => this.setState({ copied: false }), 2200); return; }
+    } catch (e) {}
+    this.setState({ sqlText: sql, testMsg: 'เบราว์เซอร์ไม่ให้คัดลอกอัตโนมัติ — กดในกล่องด้านล่างแล้ว Ctrl+A / Ctrl+C' });
+  }
+  closeSql() { this.setState({ sqlText: '' }); }
+
+  async doDownload() {
+    let sql = '';
+    try { sql = await (await fetch('./supabase-schema.sql')).text(); }
+    catch (e) { this.setState({ testMsg: 'อ่านไฟล์ SQL ไม่ได้: ' + e.message }); return; }
+    try {
+      const url = URL.createObjectURL(new Blob([sql], { type: 'text/plain;charset=utf-8' }));
+      const a = document.createElement('a');
+      a.href = url; a.download = 'supabase-schema.sql';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 3000);
+      this.setState({ testMsg: 'ถ้าไฟล์ไม่ถูกดาวน์โหลด แปลว่าพรีวิวบล็อกอยู่ — ใช้กล่องข้อความด้านล่างแทน', sqlText: sql });
+    } catch (e) { this.setState({ sqlText: sql, testMsg: 'ดาวน์โหลดไม่ได้ในพรีวิว — คัดลอกจากกล่องด้านล่างแทน' }); }
+  }
+
+  async doShowAuto() {
+    if (this.state.autoText) { this.setState({ autoText: '' }); return; }
+    this.setState({ autoBusy: true, autoMsg: '' });
+    try {
+      const r = await fetch('./supabase-autotable.sql?v=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      this.setState({ autoText: await r.text(), autoBusy: false });
+    } catch (e) {
+      this.setState({ autoBusy: false, autoMsg: 'โหลดไฟล์ supabase-autotable.sql ไม่ได้ (' + e.message + ') — เปิดไฟล์ในโฟลเดอร์โปรเจกต์แล้วคัดลอกเองได้' });
+    }
+  }
+  async doCheckAuto() {
+    const cfg = (window.__meeDb && window.__meeDb.getCfg && window.__meeDb.getCfg()) || null;
+    if (!cfg) { this.setState({ autoMsg: 'ยังไม่ได้ตั้งค่า Supabase (ขั้นที่ 2)' }); return; }
+    this.setState({ autoMsg: 'กำลังตรวจ…' });
+    try {
+      const r = await fetch(cfg.url + '/rest/v1/rpc/mee_ensure_table', {
+        method: 'POST',
+        headers: { apikey: cfg.anonKey, Authorization: 'Bearer ' + cfg.anonKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_table: 'mee_autotable_probe', p_cols: { ok: 'text' } })
+      });
+      if (r.status === 404) { this.setState({ autoMsg: '✕ ยังไม่ได้ติดตั้ง — กด “แสดงสคริปต์ติดตั้ง” แล้วนำไปรันใน SQL Editor' }); return; }
+      if (!r.ok) { this.setState({ autoMsg: '✕ เรียกฟังก์ชันไม่ผ่าน (HTTP ' + r.status + ') — ' + (await r.text()).slice(0, 160) }); return; }
+      this.setState({ autoMsg: '✓ ติดตั้งแล้ว — ทุกโมดูลจะสร้างตารางเองอัตโนมัติเมื่อบันทึกข้อมูลครั้งแรก' });
+    } catch (e) { this.setState({ autoMsg: '✕ ' + e.message }); }
+  }
+
+  // สร้าง SQL จาก "ชีตจริง": อ่านทุกแท็บ แล้วรวมคีย์ของแถวจริงเป็นคอลัมน์ (แม่นกว่า seed ในโค้ด)
+  async doGenSql() {
+    const tables = this.state.tables.filter(t => t.sheetUrl);
+    if (!tables.length) { this.setState({ testMsg: 'ไม่พบรายการตาราง (db-tables.json)' }); return; }
+    this.setState({ busy: true, done: 0, total: tables.length, log: [] });
+    const NUM = /^(qty|amount|amt|total|price|cost|rate|sort|seq|percent|pct|count|num|value|val|line|weight|volume|balance|credit|debit|score|days|hours|min|max)$/i;
+    const SYS = ['_pk', '_tenant', '_seq', '_extra', '_created_at', '_updated_at'];
+    const defs = [];
+    for (const t of tables) {
+      let cols = [], src = 'ชีต';
+      try {
+        const j = await (await fetch(t.sheetUrl + '?tab=' + encodeURIComponent(t.table) + '&_=' + Date.now(), { cache: 'no-store' })).json();
+        const rows = (j && j.ok && j.rows) || [];
+        const set = [];
+        rows.forEach(r => Object.keys(r).forEach(k => { if (set.indexOf(k) < 0) set.push(k); }));
+        cols = set;
+      } catch (e) {}
+      if (!cols.length) { cols = t.cols || []; src = cols.length ? 'seed ในโค้ด' : 'ไม่มีคอลัมน์'; }
+      defs.push({ table: String(t.table).replace(/[^a-z0-9_]/gi, '_').toLowerCase(), sheet: t.table, module: t.module, cols: cols.filter(k => SYS.indexOf(k.toLowerCase()) < 0) });
+      this.add(cols.length ? '✓' : '·', cols.length ? 'oklch(0.55 0.14 150)' : 'oklch(0.65 0.02 265)', String(t.table).replace(/[^a-z0-9_]/gi, '_').toLowerCase() + ' — ' + cols.length + ' คอลัมน์ (' + src + ')');
+      this.setState(s => ({ done: s.done + 1 }));
+    }
+    let sql = '-- Mee-ERP OS — Supabase schema (สร้างจากหัวตารางของ Google Sheet จริง)\n'
+      + '-- ' + new Date().toISOString() + '\n\ncreate extension if not exists "pgcrypto";\n\n'
+      + 'create table if not exists tenant (\n  id uuid primary key default gen_random_uuid(),\n  code text unique not null,\n  name_th text not null,\n  is_active boolean not null default true,\n  created_at timestamptz not null default now()\n);\n'
+      + "insert into tenant (code, name_th) values ('default','องค์กรเริ่มต้น') on conflict (code) do nothing;\n";
+    const LEGACY = ['id', 'tenant_id', 'seq', 'extra', 'created_at', 'updated_at'];
+    const reset = this.state.reset;
+    let mod = '';
+    defs.forEach(d => {
+      if (d.module !== mod) { mod = d.module; sql += '\n-- ============ ' + mod + ' ============\n'; }
+      const body = d.cols.map(k => '  "' + k + '" ' + (NUM.test(k) ? 'numeric' : 'text')).join(',\n');
+      if (reset) sql += 'drop table if exists "' + d.table + '" cascade;\n';
+      sql += 'create table if not exists "' + d.table + '" (\n  _pk bigint generated always as identity primary key,\n  _tenant uuid references tenant(id) on delete cascade,\n  _seq integer not null default 0,\n'
+        + (body ? body + ',\n' : '')
+        + "  _extra jsonb not null default '{}'::jsonb,\n  _created_at timestamptz not null default now(),\n  _updated_at timestamptz not null default now()\n);\n";
+      if (!reset) {
+        // อัปเกรดตารางที่เคยสร้างด้วยสคริปต์เวอร์ชันก่อน (คอลัมน์ระบบชื่อ id/tenant_id/seq/extra)
+        LEGACY.forEach(l => {
+          if (d.cols.indexOf(l) < 0) { sql += 'alter table "' + d.table + '" drop column if exists "' + l + '";\n'; return; }
+          // ชื่อชนกับคอลัมน์ระบบชุดเก่า: ถ้าชนิดไม่ตรงกับที่ข้อมูลจริงต้องการ ให้ถอดทิ้งก่อนแล้วสร้างใหม่
+          const want = NUM.test(l) ? 'numeric' : 'text';
+          sql += "do $$ begin if exists (select 1 from information_schema.columns where table_schema='public' and table_name='" + d.table + "' and column_name='" + l + "' and data_type <> '" + want + "') then execute 'alter table \"" + d.table + "\" drop column \"" + l + "\" cascade'; end if; end $$;\n";
+        });
+        sql += 'alter table "' + d.table + '" add column if not exists _pk bigint generated always as identity;\n'
+          + 'alter table "' + d.table + '" add column if not exists _tenant uuid references tenant(id) on delete cascade;\n'
+          + 'alter table "' + d.table + '" add column if not exists _seq integer not null default 0;\n'
+          + 'alter table "' + d.table + '" add column if not exists _extra jsonb not null default \'{}\'::jsonb;\n'
+          + 'alter table "' + d.table + '" add column if not exists _created_at timestamptz not null default now();\n'
+          + 'alter table "' + d.table + '" add column if not exists _updated_at timestamptz not null default now();\n';
+        d.cols.forEach(k => { sql += 'alter table "' + d.table + '" add column if not exists "' + k + '" ' + (NUM.test(k) ? 'numeric' : 'text') + ';\n'; });
+      }
+      sql += 'create index if not exists "' + d.table + '_tenant_seq_idx" on "' + d.table + '" (_tenant, _seq);\n';
+    });
+    sql += '\n-- ============ Row Level Security ============\n'
+      + "create or replace function current_tenant_id() returns uuid language sql stable as $$\n  select coalesce(nullif(current_setting('request.jwt.claims', true)::json->>'tenant_id','')::uuid, (select id from tenant where code = 'default'));\n$$;\n\n"
+      + 'alter table tenant enable row level security;\ndrop policy if exists tenant_read on tenant;\ncreate policy tenant_read on tenant for select using (true);\n\n';
+    defs.forEach(d => {
+      sql += 'alter table "' + d.table + '" enable row level security;\ndrop policy if exists "' + d.table + '_tenant" on "' + d.table + '";\ncreate policy "' + d.table + '_tenant" on "' + d.table + '" for all\n  using (_tenant = current_tenant_id()) with check (_tenant = current_tenant_id());\n';
+    });
+    sql += "\n-- ============ สิทธิ์ระดับ role (จำเป็น — RLS อย่างเดียวไม่พอ) ============\n"
+      + 'grant usage on schema public to anon, authenticated;\n'
+      + 'grant select, insert, update, delete on all tables in schema public to anon, authenticated;\n'
+      + 'grant usage, select on all sequences in schema public to anon, authenticated;\n'
+      + 'revoke insert, update, delete on public.tenant from anon;\n'
+      + 'alter default privileges in schema public grant select, insert, update, delete on tables to anon, authenticated;\n'
+      + "\nnotify pgrst, 'reload schema';\n";
+    this.setState({ busy: false, sqlText: sql, testMsg: 'สร้างสคริปต์จากชีตจริงแล้ว ' + defs.length + ' ตาราง — คัดลอกจากกล่องด้านล่างไปรันใน SQL Editor' });
+  }
+
+  // ตรวจว่าตารางใน Supabase ครบตามรายการแท็บไหม และตารางไหนยังไม่มีข้อมูล
+  async doAudit() {
+    const a = window.__meeDbAdapter;
+    if (!a) { this.setState({ testMsg: 'บันทึกการเชื่อมต่อ Supabase ก่อน' }); return; }
+    const tables = this.state.tables;
+    if (!tables.length) { this.setState({ testMsg: 'ไม่พบรายการตาราง (db-tables.json)' }); return; }
+    this.setState({ busy: true, done: 0, total: tables.length, log: [] });
+    const cfg = window.__meeDbCfg;
+    const H = { apikey: cfg.anonKey, Authorization: 'Bearer ' + cfg.anonKey };
+    let missing = 0, empty = 0, filled = 0;
+    const chunk = 8;
+    for (let i = 0; i < tables.length; i += chunk) {
+      await Promise.all(tables.slice(i, i + chunk).map(async t => {
+        const n = String(t.table).replace(/[^a-z0-9_]/gi, '_').toLowerCase();
+        try {
+          const r = await fetch(cfg.url + '/rest/v1/' + n + '?select=_pk&limit=1', { headers: H, cache: 'no-store' });
+          if (r.status !== 200) { missing++; this.add('✕', 'oklch(0.55 0.18 25)', n + ' — ยังไม่มีตาราง (HTTP ' + r.status + ')'); return; }
+          const j = await r.json();
+          if (Array.isArray(j) && j.length) { filled++; }
+          else { empty++; this.add('·', 'oklch(0.65 0.02 265)', n + ' — มีตารางแต่ยังไม่มีข้อมูล'); }
+        } catch (e) { missing++; this.add('✕', 'oklch(0.55 0.18 25)', n + ' — ' + e.message); }
+        this.setState(s => ({ done: s.done + 1 }));
+      }));
+    }
+    this.setState({ busy: false, testMsg: 'ตรวจเสร็จ: มีข้อมูล ' + filled + ' · ว่าง ' + empty + ' · ยังไม่มีตาราง ' + missing + ' (จาก ' + tables.length + ')' });
+  }
+
+  async doMigrate() {
+    const a = window.__meeDbAdapter;
+    if (!a) { this.setState({ testMsg: 'บันทึกการเชื่อมต่อ Supabase ก่อน' }); return; }
+    const tables = this.state.tables.filter(t => t.sheetUrl);
+    if (!tables.length) { this.setState({ testMsg: 'ไม่พบรายการตาราง (db-tables.json)' }); return; }
+    this.setState({ busy: true, done: 0, total: tables.length, log: [] });
+    let ok = 0, skip = 0, err = 0;
+    for (const t of tables) {
+      try {
+        const res = await fetch(t.sheetUrl + '?tab=' + encodeURIComponent(t.table) + '&_=' + Date.now(), { cache: 'no-store' });
+        const txt = await res.text();
+        let j = null; try { j = JSON.parse(txt); } catch (e) {}
+        if (!j) {
+          err++;
+          const why = /accounts\.google\.com|sign in|\u0e25\u0e07\u0e0a\u0e37\u0e48\u0e2d/i.test(txt) ? 'Apps Script ขอให้ล็อกอิน — ตั้ง Deploy › Who has access = Anyone'
+            : /Script function not found|doGet/i.test(txt) ? 'Apps Script ไม่มี doGet — ตรวจว่า deploy ไฟล์ code.gs แล้ว'
+            : 'Apps Script ตอบเป็นหน้าเว็บ ไม่ใช่ข้อมูล (URL หมดอายุหรือถูกลบ deployment)';
+          this.add('✕', 'oklch(0.55 0.18 25)', t.table + ' — ' + why);
+          this.setState(s => ({ done: s.done + 1 }));
+          continue;
+        }
+        const rows = (j && j.ok && j.rows) || [];
+        if (!rows.length) { skip++; this.add('·', 'oklch(0.65 0.02 265)', t.table + ' — ไม่มีข้อมูลในชีต'); }
+        else {
+          const p = await a.push(t.table, rows);
+          if (p.ok) { ok++; const ex = (p.extraKeys || []); this.add('✓', 'oklch(0.55 0.14 150)', t.table + ' — ' + rows.length + ' แถว' + (ex.length ? ' · ลง _extra: ' + ex.join(', ') : '')); }
+          else { err++; this.add('✕', 'oklch(0.55 0.18 25)', t.table + ' — ' + p.error); }
+        }
+      } catch (e) { err++; this.add('✕', 'oklch(0.55 0.18 25)', t.table + ' — ' + e.message); }
+      this.setState(s => ({ done: s.done + 1 }));
+      await new Promise(r => setTimeout(r, 120)); // กัน Apps Script throttle
+    }
+    this.setState({ busy: false, testMsg: 'ย้ายเสร็จ: สำเร็จ ' + ok + ' · ว่าง ' + skip + ' · ผิดพลาด ' + err });
+  }
+
+  renderVals() {
+    const h = React.createElement;
+    const s = this.state;
+    const P = { idle: ['ยังใช้ Google Sheet', 'oklch(0.55 0.02 265)', 'oklch(0.95 0.004 255)'],
+      saved: ['ตั้งค่าไว้แล้ว — ยังไม่ทดสอบ', 'oklch(0.5 0.13 75)', 'oklch(0.96 0.04 85)'],
+      testing: ['กำลังทดสอบ…', 'oklch(0.5 0.13 75)', 'oklch(0.96 0.04 85)'],
+      ok: ['เชื่อมต่อ Supabase แล้ว', 'oklch(0.45 0.13 150)', 'oklch(0.95 0.05 150)'],
+      error: ['เชื่อมต่อไม่ได้', 'oklch(0.5 0.17 25)', 'oklch(0.96 0.04 25)'] }[s.status];
+    return {
+      url: s.url, key: s.key, tenant: s.tenant, testMsg: s.testMsg,
+      tenantLine: s.status === 'ok' ? s.tenant : (s.tenant || 'default'),
+      log: s.log, hasLog: s.log.length > 0,
+      tableCount: s.tables.length || 95,
+      moduleCount: new Set(s.tables.map(t => t.module)).size || 17,
+      copyLabel: s.copied ? 'คัดลอกแล้ว ✓' : 'คัดลอกสคริปต์',
+      sqlText: s.sqlText || '', hasSqlText: !!s.sqlText,
+      selectAll: e => e.target.select(),
+      download: () => this.doDownload(),
+      genSql: () => { if (!this.state.busy) this.doGenSql(); },
+      genLabel: this.state.busy ? 'กำลังอ่านชีต…' : 'สร้างสคริปต์จากชีตจริง',
+      reset: !!s.reset,
+      toggleReset: () => this.setState(x => ({ reset: !x.reset })),
+      closeSql: () => this.closeSql(),
+      migrateLabel: s.busy ? 'กำลังย้าย…' : 'เริ่มย้ายข้อมูล',
+      progress: s.total ? s.done + ' / ' + s.total + ' ตาราง' : '',
+      statusPill: h('span', { style: { fontSize: 11.5, fontWeight: 700, padding: '4px 11px', borderRadius: 999, color: P[1], background: P[2] } }, P[0]),
+      onUrl: e => this.setState({ url: e.target.value }),
+      onKey: e => this.setState({ key: e.target.value }),
+      onTenant: e => this.setState({ tenant: e.target.value }),
+      save: () => this.doSave(),
+      revert: () => this.doRevert(),
+      copySql: () => this.doCopy(),
+      autoText: s.autoText || '', hasAutoText: !!s.autoText, autoMsg: s.autoMsg || '',
+      autoLabel: s.autoBusy ? 'กำลังโหลด…' : (s.autoText ? 'ซ่อนสคริปต์' : 'แสดงสคริปต์ติดตั้ง'),
+      showAuto: () => this.doShowAuto(),
+      checkAuto: () => this.doCheckAuto(),
+      migrate: () => { if (!s.busy) this.doMigrate(); },
+      audit: () => { if (!s.busy) this.doAudit(); },
+      auditLabel: s.busy ? 'กำลังตรวจ…' : 'ตรวจตารางใน Supabase'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

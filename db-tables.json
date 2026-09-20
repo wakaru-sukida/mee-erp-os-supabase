@@ -1,0 +1,1105 @@
+[
+ {
+  "table": "invt-item-class",
+  "module": "INVT-ITEM",
+  "key": "item-class",
+  "cols": [
+   "no",
+   "cid",
+   "en",
+   "a",
+   "co",
+   "br",
+   "sort",
+   "s",
+   "remark",
+   "IsActive",
+   "createdAt",
+   "createdBy",
+   "updatedAt",
+   "updatedBy"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-item-type",
+  "module": "INVT-ITEM",
+  "key": "item-type",
+  "cols": [
+   "no",
+   "sort"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-item-category",
+  "module": "INVT-ITEM",
+  "key": "item-category",
+  "cols": [
+   "no",
+   "catid",
+   "a",
+   "en",
+   "co",
+   "br",
+   "tid",
+   "itype",
+   "grp",
+   "sort",
+   "remark",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-item-grade",
+  "module": "INVT-ITEM",
+  "key": "item-grade",
+  "cols": [
+   "no",
+   "gdid",
+   "a",
+   "en",
+   "co",
+   "br",
+   "tid",
+   "sort",
+   "remark",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-item-brand",
+  "module": "INVT-ITEM",
+  "key": "item-brand",
+  "cols": [
+   "no",
+   "bnid",
+   "a",
+   "en",
+   "co",
+   "br",
+   "tid",
+   "sort",
+   "remark",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-uom",
+  "module": "INVT-ITEM",
+  "key": "item-uom",
+  "cols": [
+   "no",
+   "dec",
+   "sort"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-uom-group",
+  "module": "INVT-ITEM",
+  "key": "item-uomgroup",
+  "cols": [
+   "sort",
+   "no"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-uom-group-conversion",
+  "module": "INVT-ITEM",
+  "key": "item-uomgroup-conv",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-item",
+  "module": "INVT-ITEM",
+  "key": "item-main",
+  "cols": [
+   "no",
+   "typ",
+   "cat",
+   "brand",
+   "uom"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "invt-item-group",
+  "module": "INVT-ITEM",
+  "key": "item-group",
+  "cols": [
+   "no",
+   "bt",
+   "br"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbx1rJ24AXRBkIQ-YsooCtXdFbQsdmwC8_3LuXl13OT77FTmFfM2kEq03Xh7arygTVBxwg/exec"
+ },
+ {
+  "table": "itsa-audt-user-activity-log",
+  "module": "ITSA-AUDT",
+  "key": "user-activity-log",
+  "cols": [
+   "no",
+   "ts",
+   "user",
+   "dept",
+   "action",
+   "module",
+   "target",
+   "detail"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-audt-login-log",
+  "module": "ITSA-AUDT",
+  "key": "login-log",
+  "cols": [
+   "ts",
+   "a",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-audt-data-change-log",
+  "module": "ITSA-AUDT",
+  "key": "data-change-log",
+  "cols": [
+   "ts",
+   "a",
+   "by"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-audt-permission-audit",
+  "module": "ITSA-AUDT",
+  "key": "permission-audit",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-audt-api-audit",
+  "module": "ITSA-AUDT",
+  "key": "api-audit",
+  "cols": [
+   "a",
+   "cnt",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-audt-audit-report",
+  "module": "ITSA-AUDT",
+  "key": "audit-report",
+  "cols": [
+   "a",
+   "d",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-conf-modules",
+  "module": "ITSA-CONF",
+  "key": "modules",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-conf-submodules",
+  "module": "ITSA-CONF",
+  "key": "submodules",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-conf-docnum",
+  "module": "ITSA-CONF",
+  "key": "docnum",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-conf-general",
+  "module": "ITSA-CONF",
+  "key": "general",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-conf-sysparam",
+  "module": "ITSA-CONF",
+  "key": "sysparam",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-conf-localization",
+  "module": "ITSA-CONF",
+  "key": "localization",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-conf-featureflag",
+  "module": "ITSA-CONF",
+  "key": "featureflag",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-dash-user-dashboard",
+  "module": "ITSA-DASH",
+  "key": "user-dashboard",
+  "cols": [
+   "no",
+   "a",
+   "level",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-dash-security-dashboard",
+  "module": "ITSA-DASH",
+  "key": "security-dashboard",
+  "cols": [
+   "no",
+   "a",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-dash-system-dashboard",
+  "module": "ITSA-DASH",
+  "key": "system-dashboard",
+  "cols": [
+   "a",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-dash-integration-dashboard",
+  "module": "ITSA-DASH",
+  "key": "integration-dashboard",
+  "cols": [
+   "a",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-dash-audit-dashboard",
+  "module": "ITSA-DASH",
+  "key": "audit-dashboard",
+  "cols": [
+   "ts",
+   "a"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-dash-performance-dashboard",
+  "module": "ITSA-DASH",
+  "key": "performance-dashboard",
+  "cols": [
+   "a",
+   "d"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-dash-backup-dashboard",
+  "module": "ITSA-DASH",
+  "key": "backup-dashboard",
+  "cols": [
+   "ts",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-file-storage-configuration",
+  "module": "ITSA-FILE",
+  "key": "storage-configuration",
+  "cols": [
+   "no",
+   "a",
+   "type",
+   "usage",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-file-folder",
+  "module": "ITSA-FILE",
+  "key": "folder-management",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-file-quota",
+  "module": "ITSA-FILE",
+  "key": "quota",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-file-file-sharing",
+  "module": "ITSA-FILE",
+  "key": "file-sharing",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-file-file-log",
+  "module": "ITSA-FILE",
+  "key": "file-log",
+  "cols": [
+   "ts",
+   "a",
+   "d"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-intg-api",
+  "module": "ITSA-INTG",
+  "key": "api-management",
+  "cols": [
+   "no",
+   "a",
+   "type",
+   "endpoint",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-intg-webhook",
+  "module": "ITSA-INTG",
+  "key": "webhook",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-intg-oauth-client",
+  "module": "ITSA-INTG",
+  "key": "oauth-client",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-intg-external-system",
+  "module": "ITSA-INTG",
+  "key": "external-system",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-intg-api-monitor",
+  "module": "ITSA-INTG",
+  "key": "api-monitor",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-intg-api-log",
+  "module": "ITSA-INTG",
+  "key": "api-log",
+  "cols": [
+   "ts",
+   "a",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-logs-system-log",
+  "module": "ITSA-LOGS",
+  "key": "system-log",
+  "cols": [
+   "no",
+   "ts",
+   "level",
+   "source",
+   "msg"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-logs-application-log",
+  "module": "ITSA-LOGS",
+  "key": "application-log",
+  "cols": [
+   "ts",
+   "a",
+   "msg"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-logs-access-log",
+  "module": "ITSA-LOGS",
+  "key": "access-log",
+  "cols": [
+   "ts",
+   "a",
+   "res"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-logs-log-retention",
+  "module": "ITSA-LOGS",
+  "key": "log-retention",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-logs-log-search",
+  "module": "ITSA-LOGS",
+  "key": "log-search",
+  "cols": [
+   "a",
+   "cnt",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-noti-notification-template",
+  "module": "ITSA-NOTI",
+  "key": "notification-template",
+  "cols": [
+   "no",
+   "a",
+   "ch",
+   "evt",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-noti-email-notification",
+  "module": "ITSA-NOTI",
+  "key": "email-notification",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-noti-sms-notification",
+  "module": "ITSA-NOTI",
+  "key": "sms-notification",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-noti-line-notification",
+  "module": "ITSA-NOTI",
+  "key": "line-notification",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-noti-push-notification",
+  "module": "ITSA-NOTI",
+  "key": "push-notification",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-noti-notification-log",
+  "module": "ITSA-NOTI",
+  "key": "notification-log",
+  "cols": [
+   "ts",
+   "ch",
+   "to",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-org-business-group",
+  "module": "ITSA-ORG",
+  "key": "business-group",
+  "cols": [
+   "code",
+   "bid",
+   "name_th",
+   "en",
+   "bt",
+   "status",
+   "createdAt",
+   "createdBy",
+   "updatedAt",
+   "updatedBy",
+   "rowVersion"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-org-company",
+  "module": "ITSA-ORG",
+  "key": "company-management",
+  "cols": [
+   "code",
+   "tax_id"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-org-branch",
+  "module": "ITSA-ORG",
+  "key": "branch-management",
+  "cols": [
+   "code",
+   "name_th",
+   "scope_company"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-org-division",
+  "module": "ITSA-ORG",
+  "key": "division-management",
+  "cols": [
+   "code",
+   "name_th",
+   "scope_company",
+   "parent_branch",
+   "manager",
+   "dcnt",
+   "cnt"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-org-department",
+  "module": "ITSA-ORG",
+  "key": "department-management",
+  "cols": [
+   "code",
+   "name_th",
+   "scope_company",
+   "parent_branch",
+   "division",
+   "manager",
+   "cost_center",
+   "cnt"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-org-position",
+  "module": "ITSA-ORG",
+  "key": "position-management",
+  "cols": [
+   "code",
+   "name_th",
+   "scope_company",
+   "parent_branch",
+   "division",
+   "department",
+   "rep",
+   "cnt"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rpta-system-reports",
+  "module": "ITSA-RPTA",
+  "key": "system-reports",
+  "cols": [
+   "no",
+   "a",
+   "module",
+   "ts",
+   "by"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rpta-security-reports",
+  "module": "ITSA-RPTA",
+  "key": "security-reports",
+  "cols": [
+   "no",
+   "a",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rpta-audit-reports",
+  "module": "ITSA-RPTA",
+  "key": "audit-reports",
+  "cols": [
+   "no",
+   "a",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rpta-usage-reports",
+  "module": "ITSA-RPTA",
+  "key": "usage-reports",
+  "cols": [
+   "no",
+   "a",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rpta-custom-report",
+  "module": "ITSA-RPTA",
+  "key": "custom-report",
+  "cols": [
+   "no",
+   "a",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-report",
+  "module": "ITSA-RPTD",
+  "key": "report-management",
+  "cols": [
+   "no",
+   "a",
+   "fmt",
+   "mod",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-dataset-designer",
+  "module": "ITSA-RPTD",
+  "key": "dataset-designer",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-query-builder",
+  "module": "ITSA-RPTD",
+  "key": "query-builder",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-report-layout",
+  "module": "ITSA-RPTD",
+  "key": "report-layout",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-chart-designer",
+  "module": "ITSA-RPTD",
+  "key": "chart-designer",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-print-layout",
+  "module": "ITSA-RPTD",
+  "key": "print-layout",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-report-version",
+  "module": "ITSA-RPTD",
+  "key": "report-version",
+  "cols": [
+   "a",
+   "d",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-rptd-report-template",
+  "module": "ITSA-RPTD",
+  "key": "report-template",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-tent-management",
+  "module": "ITSA-TENT",
+  "key": "tenant-management",
+  "cols": [
+   "code",
+   "name_th",
+   "name_en",
+   "seats",
+   "domain"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-tent-provisioning",
+  "module": "ITSA-TENT",
+  "key": "tenant-provisioning",
+  "cols": [
+   "code",
+   "name_th",
+   "plan"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-tent-subscription-plan",
+  "module": "ITSA-TENT",
+  "key": "tenant-subscription-plan",
+  "cols": [
+   "plan_code",
+   "name_th",
+   "name_en",
+   "seats",
+   "price",
+   "cnt",
+   "status"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-tent-configuration",
+  "module": "ITSA-TENT",
+  "key": "tenant-configuration",
+  "cols": [
+   "name_th",
+   "tz",
+   "cur",
+   "lang"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-tent-isolation",
+  "module": "ITSA-TENT",
+  "key": "tenant-isolation",
+  "cols": [
+   "name_th",
+   "mode",
+   "db"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-tent-billing",
+  "module": "ITSA-TENT",
+  "key": "tenant-billing",
+  "cols": [
+   "code",
+   "name_th",
+   "period",
+   "amt"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-tent-monitoring",
+  "module": "ITSA-TENT",
+  "key": "tenant-monitoring",
+  "cols": [
+   "name_th",
+   "cpu",
+   "stor",
+   "status"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-uam-user",
+  "module": "ITSA-UAM",
+  "key": "user-management",
+  "cols": [
+   "no",
+   "a",
+   "co",
+   "br",
+   "dept",
+   "email",
+   "division"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-uam-role",
+  "module": "ITSA-UAM",
+  "key": "role-management",
+  "cols": [
+   "no",
+   "a",
+   "d",
+   "cnt",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-uam-permission",
+  "module": "ITSA-UAM",
+  "key": "permission-management",
+  "cols": [
+   "no",
+   "a",
+   "d",
+   "role"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-workflow",
+  "module": "ITSA-WFD",
+  "key": "workflow-management",
+  "cols": [
+   "no",
+   "a",
+   "mod",
+   "steps",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-workflow-builder",
+  "module": "ITSA-WFD",
+  "key": "workflow-builder",
+  "cols": [
+   "a",
+   "ts",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-workflow-step",
+  "module": "ITSA-WFD",
+  "key": "workflow-step",
+  "cols": [
+   "a",
+   "d",
+   "who"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-approval-workflow",
+  "module": "ITSA-WFD",
+  "key": "approval-workflow",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-business-rule",
+  "module": "ITSA-WFD",
+  "key": "business-rule",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-workflow-version",
+  "module": "ITSA-WFD",
+  "key": "workflow-version",
+  "cols": [
+   "a",
+   "d",
+   "ts"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-workflow-deployment",
+  "module": "ITSA-WFD",
+  "key": "workflow-deployment",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-workflow-monitoring",
+  "module": "ITSA-WFD",
+  "key": "workflow-monitoring",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "itsa-wfd-workflow-template",
+  "module": "ITSA-WFD",
+  "key": "workflow-template",
+  "cols": [
+   "a",
+   "d",
+   "s"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwJgoSbacCcStp2-c01q1Yb5zNjwKNHpaEMVSM07uHmiPCFZ9BHS5oAvPzFan3w4UlraQ/exec"
+ },
+ {
+  "table": "proc-po-header",
+  "module": "PROC-PO",
+  "key": "purchase-order",
+  "cols": [
+   "no",
+   "co",
+   "vend",
+   "prRef",
+   "ts",
+   "amt",
+   "cc"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwBVfkM1SKbU9GBGqKl7HFSyYwQk68Pbgw4sLIuVDYauQNcjoexIKGq95jQo6t9G15kbw/exec"
+ },
+ {
+  "table": "proc-po-detail",
+  "module": "PROC-PO",
+  "key": "po-detail",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwBVfkM1SKbU9GBGqKl7HFSyYwQk68Pbgw4sLIuVDYauQNcjoexIKGq95jQo6t9G15kbw/exec"
+ },
+ {
+  "table": "proc-pr-header",
+  "module": "PROC-PR",
+  "key": "purchase-requisition",
+  "cols": [
+   "no",
+   "co",
+   "br",
+   "dept",
+   "ts",
+   "amt",
+   "cc"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwBVfkM1SKbU9GBGqKl7HFSyYwQk68Pbgw4sLIuVDYauQNcjoexIKGq95jQo6t9G15kbw/exec"
+ },
+ {
+  "table": "proc-pr-detail",
+  "module": "PROC-PR",
+  "key": "pr-detail",
+  "cols": [],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwBVfkM1SKbU9GBGqKl7HFSyYwQk68Pbgw4sLIuVDYauQNcjoexIKGq95jQo6t9G15kbw/exec"
+ },
+ {
+  "table": "proc-vm",
+  "module": "PROC-VM",
+  "key": "vendor-management",
+  "cols": [
+   "no",
+   "a",
+   "co",
+   "br",
+   "type",
+   "grade"
+  ],
+  "sheetUrl": "https://script.google.com/macros/s/AKfycbwBVfkM1SKbU9GBGqKl7HFSyYwQk68Pbgw4sLIuVDYauQNcjoexIKGq95jQo6t9G15kbw/exec"
+ }
+]
